@@ -77,15 +77,27 @@ else
 	exit 0
 fi
 
+shellsource=''
+if [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
+   # assume Bash
+   shellsource='sh'
+elif [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
+   # assume Zsh
+   shellsource='zsh'
+else
+   # something else like fish
+   echo ""
+fi
+
 if [[ -e $pathzsh ]]; then
 	genproxy $pathbash
-	source $pathbash
+	$shellsource $pathbash
 	green "write proxy command to ${pathzsh##*/} successfully!"
 fi
 
 if [[ -e $pathbash ]]; then
 	genproxy $pathzsh
-	source $pathzsh
+	$shellsource $pathzsh
 	green "write proxy command to ${pathbash##*/} successfully!"
 fi
 
