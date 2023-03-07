@@ -50,9 +50,9 @@ sleep 0.25
 
 genproxy(){
 	echo -e "\n" >> $1
+	PROXYURL=http://127.0.0.1
+	PROXYPORT=$port
 	cat >> $1 <<PROXYEOF
-PROXYURL=http://127.0.0.1
-PROXYPORT=$port
 # 设置代理
 alias $startProxy="export http_proxy=$PROXYURL:$PROXYPORT https_proxy=$PROXYURL:$PROXYPORT;curl cip.cc"
 # 取消代理
