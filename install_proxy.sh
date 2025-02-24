@@ -54,9 +54,9 @@ genproxy(){
 	PROXYPORT=$port
 	cat >> $1 <<PROXYEOF
 # 设置代理
-alias $startProxy="export http_proxy=$PROXYURL:$PROXYPORT https_proxy=$PROXYURL:$PROXYPORT;curl cip.cc"
+alias $startProxy="export http_proxy=$PROXYURL:$PROXYPORT https_proxy=$PROXYURL:$PROXYPORT;echo "设置代理成功";#curl cip.cc"
 # 取消代理
-alias $endProxy="unset http_proxy https_proxy;curl cip.cc"
+alias $endProxy="unset http_proxy https_proxy;echo "取消代理";#curl cip.cc"
 PROXYEOF
 }
 
